@@ -1,11 +1,14 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex'
 
 const store = createStore({
-  state(){
-    return{
-      name:'coderwhy'
+  state() {
+    return {
+      name: 'coderwhy'
     }
-  }
+  },
+  mutations: {},
+  getters: {},
+  actions: {}
 })
 
 export default store
