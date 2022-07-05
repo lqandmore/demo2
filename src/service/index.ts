@@ -1,16 +1,17 @@
 import LQRequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
+import localCache from '@/utils/cache'
 
 const lqRequst = new LQRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      const token = ''
+      const token = localCache.getCache('token')
 
       if (token) {
-        config.headers!.Authorzation = `Bearer ${token}`
-        // config.headers && (config.headers.Authorzation = `Bearer ${token}`)
+        // config.headers?.Authorzation = `Bearer ${token}`
+        config.headers && (config.headers.Authorzation = `Bearer ${token}`)
       }
       console.log('请求成功的拦截')
 

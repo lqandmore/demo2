@@ -1,6 +1,6 @@
 <template>
   <div class="login-account">
-    <el-form :model="account" :rules="rules" label-width="60">
+    <el-form :model="account" :rules="rules" label-width="60" ref="formRef">
       <el-form-item label="账号" prop="name" required>
         <el-input v-model="account.name" />
       </el-form-item>
@@ -18,15 +18,31 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
+import localCache from '../../../../src/utils/cache'
+// import localCache from '@/utils/cache'
+import { ElForm } from 'element-plus'
+import store from '../../../store'
 const account = reactive({
-  name: 'string',
-  password: 'string'
+  name: localCache.getCache('name'),
+  password: localCache.getCache('password')
 })
 
 const isKeepPassword = ref(true)
-
+const formRef = ref<InstanceType<typeof ElForm>>()
 function loginAction() {
-  console.log('111111')
+  formRef.value?.validate((valid) => {
+    if (valid) {
+      if (isKeepPassword.value) {
+        localCache.setCache('name', account.name)
+        localCache.setCache('password', account.password)
+      } else {
+        localCache.deleteCache('name')
+        localCache.deleteCache('password')
+      }
+
+      store.dispatch('login/accountLoginAction', { ...account })
+    }
+  })
 }
 
 defineExpose({

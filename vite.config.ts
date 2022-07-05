@@ -1,16 +1,35 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-const path = require('path')
-
+import * as path from 'path'
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
-  return {
-    outputDir: './build',
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src')
+
+export default defineConfig({
+  base: './',
+  build: {
+    outDir: 'dist'
+  },
+  server: {
+    port: 5000,
+    proxy: {
+      // api proxy
+      '/api': {
+        target: 'xx.xx.xx.xx',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(new RegExp(`^/api`), '/api')
       }
-    },
-    plugins: [vue()]
-  }
+    }
+  },
+  resolve: {
+    alias: [
+      { find: /^~/, replacement: '' },
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: 'typings', replacement: path.resolve(__dirname, 'typings') },
+      {
+        find: 'static',
+        replacement: path.resolve(__dirname, 'public/static')
+      }
+    ]
+  },
+
+  plugins: [vue()]
 })

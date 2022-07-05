@@ -1,7 +1,7 @@
 <template>
   <div class="login-panel">
-    <div>
-      <img src="111" alt="222" />
+    <div background="@/assets/img/123dw.jpg">
+      <!-- <img src="@/assets/img/123dw.jpg" alt="222" /> -->
       <span>Duia</span>
       <p>让学习，触手可及</p>
     </div>
@@ -31,9 +31,7 @@
       </el-tab-pane>
     </el-tabs>
     <div>
-      <el-button type="primary" class="login-btn" @click="loginClick"
-        >立即登录</el-button
-      >
+      <el-button type="primary" class="login-btn" @click="loginClick">立即登录</el-button>
     </div>
   </div>
 </template>

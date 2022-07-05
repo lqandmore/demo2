@@ -19,7 +19,7 @@ export const rules = {
       trigger: 'blur'
     },
     {
-      pattern: /^[a-z0-9]{8,}$/,
+      pattern: /^[a-z0-9]{3,}$/,
       message: '用户名必须是8位以上的字母或者数字~',
       trigger: 'blur'
     }
