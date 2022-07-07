@@ -39,12 +39,12 @@ const loginMudle: Module<ILoginState, IRootState> = {
       commit('changeToken', token)
       localCache.setCache('token', token)
 
-      const userInfoResult = await requestUserInfoById(id)
-      const userInfo = userInfoResult.data
-      commit('changeUserInfo', userInfo)
-      localCache.setCache('userInfo', userInfo)
+      // const userInfoResult = await requestUserInfoById(id)
+      // const userInfo = userInfoResult.data
+      // commit('changeUserInfo', userInfo)
+      // localCache.setCache('userInfo', userInfo)
 
-      const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
+      const userMenusResult = await requestUserMenusByRoleId(1)
       const userMenus = userMenusResult.data
       commit('changeUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)

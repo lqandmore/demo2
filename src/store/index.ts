@@ -7,7 +7,6 @@ const store = createStore<IRootState>({
     return {
       name: 'coderwhy',
       age: 18
-
     }
   },
   mutations: {},

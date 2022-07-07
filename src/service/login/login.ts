@@ -23,7 +23,7 @@ export function requestUserInfoById(id: number) {
 
 export function requestUserMenusByRoleId(id: number) {
   return lqRequst.get<IDataType>({
-    url: LoginAPI.UserMenus + id + '/menu',
+    url: LoginAPI.UserMenus + '1' + '/menu',
     showLoading: false
   })
 }

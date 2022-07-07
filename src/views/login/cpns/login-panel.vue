@@ -1,6 +1,6 @@
 <template>
   <div class="login-panel">
-    <div background="@/assets/img/123dw.jpg">
+    <div>
       <!-- <img src="@/assets/img/123dw.jpg" alt="222" /> -->
       <span>Duia</span>
       <p>让学习，触手可及</p>
@@ -50,6 +50,7 @@ function loginClick() {
 .login-panel {
   width: 300px;
   margin-bottom: 130px;
+
 }
 
 .login-btn {

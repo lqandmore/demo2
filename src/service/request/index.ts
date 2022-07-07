@@ -51,7 +51,7 @@ class LQRequest {
         console.log('公有拦截器，响应成功拦截')
         this.loading?.close()
         const data = result.data
-        if (data.returnCode === '-1001') {
+        if (data.returnCode && (data.returnCode === '-1001')) {
           console.log('请求失败')
         } else {
           return data

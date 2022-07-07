@@ -5,6 +5,7 @@ import store from './store'
 
 import './assets/css/index.css'
 import 'normalize.css'
+// import '@/service/axios-demo.ts'
 
 import globalRegister from './global'
 
