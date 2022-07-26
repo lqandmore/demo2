@@ -9,11 +9,11 @@ export default defineConfig({
     outDir: 'dist'
   },
   server: {
-    port: 5000,
+    port: 4000,
     proxy: {
       // api proxy
       '/api': {
-        target: 'http://152.136.185.210:5000/',
+        target: 'http://152.136.185.210:4000/', //
         changeOrigin: true,
         rewrite: (path) => path.replace(/`^\/api`/, '')
       }
@@ -30,6 +30,5 @@ export default defineConfig({
       }
     ]
   },
-
   plugins: [vue()]
 })

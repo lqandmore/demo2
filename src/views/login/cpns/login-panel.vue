@@ -31,7 +31,9 @@
       </el-tab-pane>
     </el-tabs>
     <div>
-      <el-button type="primary" class="login-btn" @click="loginClick">立即登录</el-button>
+      <el-button type="primary" class="login-btn" @click="loginClick"
+        >立即登录</el-button
+      >
     </div>
   </div>
 </template>
@@ -50,7 +52,6 @@ function loginClick() {
 .login-panel {
   width: 300px;
   margin-bottom: 130px;
-
 }
 
 .login-btn {

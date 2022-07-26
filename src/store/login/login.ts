@@ -9,6 +9,7 @@ import {
 } from '../../service/login/login'
 import localCache from '../../utils/cache'
 import router from '../../router'
+import userMenusResult from '@/static/menu.json'
 
 const loginMudle: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -16,37 +17,35 @@ const loginMudle: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      usrMenus: []
+      userMenus: []
     }
   },
   getters: {},
   mutations: {
-    changeToken(state, token: string) {
+    saveToken(state, token: string) {
       state.token = token
     },
-    changeUserInfo(state, userInfo: any) {
+    saveUserInfo(state, userInfo: any) {
       state.userInfo = userInfo
     },
-    changeUserMenus(state, userMenus: any) {
-      state.usrMenus = userMenus
+    saveUserMenus(state, userMenus: any) {
+      state.userMenus = userMenus
     }
   },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
       //实现登录逻辑
       const loginResult = await accountLgoinRequest(payload)
-      const { id, token } = loginResult.data
-      commit('changeToken', token)
+      const { id, token } = loginResult
+      commit('saveToken', token)
       localCache.setCache('token', token)
 
-      // const userInfoResult = await requestUserInfoById(id)
-      // const userInfo = userInfoResult.data
-      // commit('changeUserInfo', userInfo)
-      // localCache.setCache('userInfo', userInfo)
+      const userInfo = await requestUserInfoById(id)
+      commit('saveUserInfo', userInfo)
+      localCache.setCache('userInfo', userInfo)
 
-      const userMenusResult = await requestUserMenusByRoleId(1)
-      const userMenus = userMenusResult.data
-      commit('changeUserMenus', userMenus)
+      const userMenus = await requestUserMenusByRoleId(1)
+      commit('saveUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)
 
       router.push('/main')
@@ -54,17 +53,17 @@ const loginMudle: Module<ILoginState, IRootState> = {
     loadLocalLogin({ commit }) {
       const token = localCache.getCache('token')
       if (token) {
-        commit('changeToken', token)
+        commit('saveToken', token)
       }
 
       const userInfo = localCache.getCache('userInfo')
       if (userInfo) {
-        commit('changeUserInfo', userInfo)
+        commit('saveUserInfo', userInfo)
       }
 
       const userMenus = localCache.getCache('userMenus')
       if (userMenus) {
-        commit('changeUserMenus', userMenus)
+        commit('saveUserMenus', userMenus)
       }
     }
   }

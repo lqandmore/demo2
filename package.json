@@ -10,10 +10,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.6",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "element-plus": "^2.2.6",
     "normalize.css": "^8.0.1",
+    "scss": "^0.2.4",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2"

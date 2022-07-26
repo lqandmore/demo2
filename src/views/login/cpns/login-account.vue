@@ -18,10 +18,10 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
-import localCache from '../../../../src/utils/cache'
+import localCache from '@/utils/cache'
 // import localCache from '@/utils/cache'
 import { ElForm } from 'element-plus'
-import store from '../../../store'
+import store from '@/store'
 const account = reactive({
   name: localCache.getCache('name'),
   password: localCache.getCache('password')
